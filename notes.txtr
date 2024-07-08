@@ -1,0 +1,20 @@
+Sudoku Solver
+
+Common number method:
+  1) Look for most common number 
+  2) have breakpoint?
+  3) look for where common number ISNT 
+  4) look at ALMOST full squares for next numbers
+  5) 
+
+
+
+Data: 
+  Array of arrays?
+  row col and square need to have num 1-5
+
+
+Tasks:
+  1) BOARD
+  2) user input
+
