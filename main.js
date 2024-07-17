@@ -4,35 +4,67 @@ function main() {
 }
 
 function solve() {
-  const board = document.querySelector('#userSquare');
+  const sudoku = getInputs();
 
-  if (!board.style.backgroundColor) {
-    board.style.backgroundColor = 'lightgrey';
-  } else {
-    board.style.backgroundColor = '';
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (sudoku[i][j] === 0) {
+        console.log(`Empty cell at x: ${i}, y: ${j}`);
+        let possibleValues = [];
+
+        for (let value = 1; value <= 9; value++) {
+          if (isValid(value, i, j, sudoku)) {
+            possibleValues.push(value);
+          }
+        }
+
+        if (possibleValues.length === 1) {
+          sudoku[i][j] = possibleValues[0];
+        }
+      }
+    }
+  }
+}
+
+function isValid(value, x, y, sudoku) {
+  return (
+    checkRow(value, x, y, sudoku) &&
+    checkColumn(value, x, y, sudoku) &&
+    checkSquare(value, x, y, sudoku)
+  );
+}
+
+function checkRow(value, x, y, sudoku) {
+  // Todo!
+}
+
+function checkColumn(value, x, y, sudoku) {
+  // Todo!
+}
+
+function checkSquare(value, x, y, sudoku) {
+  // Todo!
+}
+
+function getInputs() {
+  const board = [];
+
+  const rows = document.querySelectorAll('.row');
+
+  for (let row of rows) {
+    const inputs = row.querySelectorAll('input');
+    const dataRow = [];
+
+    inputs.forEach((input) => {
+      dataRow.push(input.value ? parseInt(input.value) : 0);
+    });
+
+    board.push(dataRow);
   }
 
-  fill_data();
+  return board;
 }
 
 document.querySelector('.solve').addEventListener('click', solve);
 
 document.addEventListener('DOMContentLoaded', main);
-
-let cells = [];
-
-let fill_data = () => {
-  let data = document.querySelectorAll('.cell');
-  for (let cell of data) {
-    let square = [];
-    for (let input of cell.getElementsByTagName('input')) {
-      if (input.value) {
-        square.push(parseInt(input.value));
-      } else {
-        square.push(0);
-      }
-    }
-    cells.push(square);
-  }
-  console.log(cells);
-};
