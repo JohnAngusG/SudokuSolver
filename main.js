@@ -13,6 +13,8 @@ function solve() {
   }
 
   fill_data();
+  console.log(checkRow(0, 1));
+  console.log(checkColumn(0, 1));
 }
 
 document.querySelector(".solve").addEventListener("click", solve);
@@ -35,4 +37,18 @@ let fill_data = () => {
     sudoku.push(row);
   }
   console.log(sudoku);
+};
+
+let checkRow = (rowNumber, testNumber) => {
+  return sudoku[rowNumber].includes(testNumber);
+};
+
+let checkColumn = (columnNumber, testNumber) => {
+  for (let row of sudoku) {
+    console.log(row[columnNumber]);
+    if (row[columnNumber] === testNumber) {
+      return false;
+    }
+  }
+  return true;
 };
