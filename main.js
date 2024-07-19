@@ -17,6 +17,7 @@ function solve() {
     generalFunc();
   }
   console.log(testSudoku);
+  console.log(counter);
 }
 
 document.querySelector(".solve").addEventListener("click", solve);
@@ -53,6 +54,22 @@ let checkColumn = (columnNumber, testNumber) => {
   return true;
 };
 
+let checkSquare = (row, columnNumber, testNumber) => {
+  // square 1: 0: [0, 1, 2] Square 2: 0: [3, 4, 5] Square 3: 0: [6, 7, 8]
+  //           1: [0, 1, 2]           1: [3, 4, 5]           1: [6, 7, 8]
+  //           2: [0, 1, 2]           2: [3, 4, 5]           2: [6, 7, 8]
+  //
+  // square 4: 3: [0, 1, 2] Square 5: 3: [3, 4, 5] Square 6: 3: [6, 7, 8]
+  //           4: [0, 1, 2]           4: [3, 4, 5]           4: [6, 7, 8]
+  //           5: [0, 1, 2]           5: [3, 4, 5]           5: [6, 7, 8]
+  //
+  // square 7: 6: [0, 1, 2] Square 8: 6: [3, 4, 5] Square 9: 6: [6, 7, 8]
+  //           7: [0, 1, 2]           7: [3, 4, 5]           7: [6, 7, 8]
+  //           8: [0, 1, 2]           8: [3, 4, 5]           8: [6, 7, 8]
+
+  return true;
+};
+
 let counter = 0;
 let generalFunc = () => {
   for (let row of testSudoku) {
@@ -63,6 +80,10 @@ let generalFunc = () => {
         for (let i = 1; i < 10; i++) {
           if (checkRow(row, i) && checkColumn(indexOfCell, i)) {
             options.push(i);
+          }
+
+          if (options.length > 1) {
+            break;
           }
         }
         if (options.length === 1) {
