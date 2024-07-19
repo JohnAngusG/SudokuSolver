@@ -13,7 +13,9 @@ function solve() {
   }
 
   fill_data();
-  generalFunc();
+  while (testSudoku.some((row) => row.includes(0))) {
+    generalFunc();
+  }
   console.log(testSudoku);
 }
 
@@ -58,12 +60,10 @@ let generalFunc = () => {
         let indexOfCell = row.indexOf(cell);
         let options = [];
         for (let i = 1; i < 10; i++) {
-          console.log(i);
           if (checkRow(row, i) && checkColumn(indexOfCell, i)) {
             options.push(i);
           }
         }
-        console.log(options);
         if (options.length === 1) {
           row[indexOfCell] = options[0];
         }
@@ -73,7 +73,7 @@ let generalFunc = () => {
 };
 
 let testSudoku = [
-  [7, 4, 2, 6, 1, 8, 9, 3, 5],
+  [0, 4, 2, 6, 1, 8, 9, 3, 5],
   [1, 8, 3, 2, 9, 5, 6, 4, 7],
   [6, 5, 9, 3, 7, 4, 1, 2, 8],
   [4, 7, 8, 5, 3, 6, 2, 1, 9],
