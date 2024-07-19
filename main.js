@@ -13,7 +13,7 @@ function solve() {
   }
 
   fill_data();
-  while (testSudoku.some((row) => row.includes(0))) {
+  while (testSudoku.some((row) => row.includes(0)) && counter < 100000) {
     generalFunc();
   }
   console.log(testSudoku);
@@ -53,6 +53,7 @@ let checkColumn = (columnNumber, testNumber) => {
   return true;
 };
 
+let counter = 0;
 let generalFunc = () => {
   for (let row of testSudoku) {
     for (let cell of row) {
@@ -70,16 +71,17 @@ let generalFunc = () => {
       }
     }
   }
+  counter++;
 };
 
 let testSudoku = [
-  [0, 4, 2, 6, 1, 8, 9, 3, 5],
-  [1, 8, 3, 2, 9, 5, 6, 4, 7],
-  [6, 5, 9, 3, 7, 4, 1, 2, 8],
-  [4, 7, 8, 5, 3, 6, 2, 1, 9],
-  [9, 3, 1, 4, 2, 7, 5, 8, 6],
-  [2, 6, 5, 9, 8, 1, 3, 7, 4],
-  [3, 9, 6, 8, 4, 0, 7, 5, 1],
-  [8, 2, 7, 1, 5, 9, 4, 6, 3],
-  [5, 1, 4, 7, 6, 3, 8, 9, 2],
+  [7, 4, 2, 6, 0, 0, 0, 3, 0],
+  [0, 0, 0, 0, 9, 5, 6, 0, 7],
+  [6, 0, 0, 0, 7, 0, 1, 0, 8],
+  [4, 7, 8, 5, 0, 6, 0, 0, 0],
+  [9, 0, 0, 4, 0, 7, 5, 8, 0],
+  [0, 0, 0, 0, 0, 1, 3, 7, 4],
+  [0, 0, 6, 8, 4, 0, 0, 0, 1],
+  [8, 2, 7, 0, 0, 0, 0, 0, 0],
+  [0, 0, 4, 7, 6, 0, 0, 9, 0],
 ];
