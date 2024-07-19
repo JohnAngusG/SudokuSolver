@@ -19,20 +19,20 @@ document.querySelector(".solve").addEventListener("click", solve);
 
 document.addEventListener("DOMContentLoaded", main);
 
-let cells = [];
+let sudoku = [];
 
 let fill_data = () => {
-  let data = document.querySelectorAll(".cell");
-  for (let cell of data) {
-    let square = [];
-    for (let input of cell.getElementsByTagName("input")) {
+  let data = document.querySelectorAll(".sudokuRow");
+  for (let rows of data) {
+    let row = [];
+    for (let input of rows.getElementsByTagName("input")) {
       if (input.value) {
-        square.push(parseInt(input.value));
+        row.push(parseInt(input.value));
       } else {
-        square.push(0);
+        row.push(0);
       }
     }
-    cells.push(square);
+    sudoku.push(row);
   }
-  console.log(cells);
+  console.log(sudoku);
 };
