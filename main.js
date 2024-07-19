@@ -13,8 +13,8 @@ function solve() {
   }
 
   fill_data();
-  console.log(checkRow(0, 1));
-  console.log(checkColumn(0, 1));
+  generalFunc();
+  console.log(sudoku);
 }
 
 document.querySelector(".solve").addEventListener("click", solve);
@@ -39,8 +39,8 @@ let fill_data = () => {
   console.log(sudoku);
 };
 
-let checkRow = (rowNumber, testNumber) => {
-  return sudoku[rowNumber].includes(testNumber);
+let checkRow = (row, testNumber) => {
+  return row.includes(testNumber);
 };
 
 let checkColumn = (columnNumber, testNumber) => {
@@ -51,4 +51,23 @@ let checkColumn = (columnNumber, testNumber) => {
     }
   }
   return true;
+};
+
+let generalFunc = () => {
+  for (let row of sudoku) {
+    for (let cell of row) {
+      if (!cell) {
+        let indexOfCell = row.indexOf(cell);
+        let options = [];
+        for (let i = 1; i < 10; i++) {
+          if (checkRow(row, i) && checkColumn(indexOfCell, i)) {
+            options.push(i);
+          }
+        }
+        if (options.length === 1) {
+          row[indexOfCell] = options.pop();
+        }
+      }
+    }
+  }
 };
